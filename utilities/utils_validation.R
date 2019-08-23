@@ -3,8 +3,9 @@ library(assertthat)
 inspect_to_validate_folder<-function(){
   temp_to_rm<-paste0("./data_check_outputs/",list.files("./data_check_outputs"))
   unlink(temp_to_rm) 
-  cleaninginspectoR:::inspect_all_csv_in_dir("./to validate/",target_dir = "./data_check_outputs/")
+  issues<-cleaninginspectoR:::inspect_all_csv_in_dir("./to validate/",target_dir = "./data_check_outputs/",recursive = TRUE)
   open_in_browser("data_check_outputs")
+  invisible(issues)
 }
 
 

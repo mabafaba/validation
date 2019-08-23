@@ -6,6 +6,26 @@ library(dplyr)
 rcm<-rcm_download(include_validated = T, include_archived = T)
 rcm_raw<-rcm_download(raw = T)
 
+allocation<-read.csv("./m.csv")
+allocation %>% nrow
+allocation$project.code<-rcm_raw$Project.Code[match(allocation$file.id,rcm_raw$File.ID_Name)]
+allocation$date.validated<-rcm_raw$Date.validated.on.RC[match(allocation$file.id,rcm_raw$File.ID_Name)]
+allocation %<>% mutate(time_percent = TIME.FACTOR/sum(TIME.FACTOR))
+allocation %<>% mutate(num_days = TIME.FACTOR/8)
+
+
+allocation %>% write.csv("allocation_m.csv")
+
+
+test<-inner_join(rcm_raw,allocation,by=c("File.ID_Name"="file.id"))
+
+
+test<-test %>% mutate(time_percentage = TIME.FACTOR/sum(TIME.FACTOR))
+test<-test %>% mutate(num_days = TIME.FACTOR/8)
+test$TIME.FACTOR
+test$time_percentage %>% sum
+test$HQ.FOCAL.POINT %>% table
+
 
 rcm$date<-ymd(rcm$date.hqsubmission.actual)
 rcm$date[is.na(rcm$date)]<-dmy(rcm$date.validated)[is.na(rcm$date)]

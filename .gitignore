@@ -1,21 +1,37 @@
 # History files
+
 .Rhistory
+
 .Rapp.history
 
+
+
 # Session Data files
+
 .RData
 
+
+
 # Example code in package build process
+
 *-Ex.R
 
+
+
 # Output files from R CMD build
+
 /*.tar.gz
 
+
 # Output files from R CMD check
+
 /*.Rcheck/
 
+
 # RStudio files
+
 .Rproj.user/
+
 
 # produced vignettes
 vignettes/*.html
@@ -43,3 +59,14 @@ rsconnect/
 *.csv
 
 
+.Rproj.user
+
+/to validate/*
+/to validate/
+
+/monthly_tracker/
+/monthly_tracker/*
+
+/to validate/*
+/data_check_outputs/*
+/data_check_outputs/
